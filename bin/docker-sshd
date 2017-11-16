@@ -16,7 +16,7 @@ if ! docker inspect -f '{{.State.Running}}' ${CONTAINER_NAME} >/dev/null 2>&1; t
 	 -w ${ROOT_DIR} \
 	 -p 2200:22 \
 	 --name ${CONTAINER_NAME} \
-	 fboranek:debian-dev
+	 fboranek/debian-dev
 	 
 	 if [ $? -ne 0 ]; then
 		 echo "Failed to run container."
