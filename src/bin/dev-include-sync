@@ -1,0 +1,16 @@
+#!/bin/bash
+
+DEST=$1
+
+if [ ! -d $DEST ] || [ -z "$DEST" ]; then
+    echo "Destination directory '$DEST' dosn't exist."
+    exit 1
+fi
+
+rsync \
+    --acls \
+    --delete \
+    --verbose \
+    --archive \
+    --prune-empty-dirs \
+    /usr/include $DEST

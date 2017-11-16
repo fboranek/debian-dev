@@ -1,0 +1,15 @@
+#!/bin/sh
+
+dir1=/usr/include/
+dir2=/root/docker-include/
+
+# synchronize indudes is optional 
+if [ ! -d $dir2 ]; then
+    exit 0
+fi
+
+dev-include-sync $dir2
+
+while inotifywait -e modify,create,delete -r "$dir1"; do
+    dev-include-sync $dir2
+done

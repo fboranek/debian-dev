@@ -1,0 +1,5 @@
+#!/bin/sh
+
+
+/usr/bin/srv-include-sync >/var/log/include-sync.log &
+/usr/sbin/sshd -D

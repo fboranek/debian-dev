@@ -1,0 +1,30 @@
+#!/bin/sh
+
+ROOT_DIR=${HOME}
+CONTAINER_NAME=dev
+
+
+if ! docker inspect -f '{{.State.Running}}' ${CONTAINER_NAME} >/dev/null 2>&1; then
+
+	echo "Launching container ${CONTAINER_NAME}"
+
+	docker run --rm -d --security-opt seccomp:unconfined \
+	 -v ${ROOT_DIR}:${ROOT_DIR} \
+	 -v ${ROOT_DIR}/docker-include:/root/docker-include \
+	 -v ${HOME}/.ssh:/root/.ssh \
+	 -v ${HOME}/.bash_profile:/root/.bash_profile \
+	 -w ${ROOT_DIR} \
+	 -p 2200:22 \
+	 --name ${CONTAINER_NAME} \
+	 fboranek:debian-dev
+	 
+	 if [ $? -ne 0 ]; then
+		 echo "Failed to run container."
+		 exit 1
+	 fi
+else
+	echo "Attaching into running container ${CONTAINER_NAME}"
+fi
+
+ssh root@localhost -p 2200 -A
+

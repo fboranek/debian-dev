@@ -1,0 +1,5 @@
+*.sh        text eol=lf
+bin/*       text eol=lf
+src/bin/*   text eol=lf
+src/home/*  text eol=lf
+src/sshd/*  binary
