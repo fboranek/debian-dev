@@ -1,4 +1,4 @@
-#!/usr/bin/env docker build --tag docker.com/fboranek/debian-dev:bullseye . -f
+#!/usr/bin/env docker build --tag fboranek/debian-dev:bullseye . -f
 FROM debian:bullseye
 
 ##########################################################################################
