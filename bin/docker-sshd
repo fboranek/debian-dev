@@ -10,7 +10,6 @@ if ! docker inspect -f '{{.State.Running}}' ${CONTAINER_NAME} >/dev/null 2>&1; t
 
 	docker run --rm -d --security-opt seccomp:unconfined \
 	 -v ${ROOT_DIR}:${ROOT_DIR} \
-	 -v ${ROOT_DIR}/docker-include:/root/docker-include \
 	 -v ${HOME}/.ssh:/root/.ssh \
 	 -v ${HOME}/.bash_profile:/root/.bash_profile \
 	 -w ${ROOT_DIR} \
